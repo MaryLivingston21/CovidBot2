@@ -37,12 +37,19 @@ def get_message():
     return message
 
 
-today = date.today()
-scheduled_time = time(hour=7)
-schedule_timestamp = datetime.combine(today, scheduled_time).strftime('%s')
-try:
-    result = client.chat_scheduleMessage(channel=channel_id, text=get_message(),
-                                         post_at=schedule_timestamp)
-    logger.info(result)
-except SlackApiError as e:
-    logger.error("Error scheduling message: {}".format(e))
+if datetime.now().hour < 7:
+    today = date.today()
+    scheduled_time = time(hour=7)
+    schedule_timestamp = datetime.combine(today, scheduled_time).strftime('%s')
+    try:
+        result = client.chat_scheduleMessage(channel=channel_id, text=get_message(),
+                                             post_at=schedule_timestamp)
+        logger.info(result)
+    except SlackApiError as e:
+        logger.error("Error scheduling message: {}".format(e))
+else:
+    try:
+        result = client.chat_postMessage(channel=channel_id, text=get_message())
+        logger.info(result)
+    except SlackApiError as e:
+        logger.error("Error scheduling message: {}".format(e))
