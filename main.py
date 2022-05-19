@@ -6,7 +6,6 @@ from datetime import datetime
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
 
-os.environ['SLACK_BOT_TOKEN'] = ''
 
 
 # # WebClient instantiates a client that can call API methods
@@ -14,9 +13,10 @@ os.environ['SLACK_BOT_TOKEN'] = ''
 client = WebClient(token=os.environ.get('SLACK_BOT_TOKEN'))
 logger = logging.getLogger(__name__)
 # ID of the channel you want to send the message to
-user_ids = {"U02AUH5TLHF": "Boston"}
-location_dict = {"Boston": ["Middlesex", "Massachusetts", "XXX"], "Durham": ["Durham", "North%20Carolina", "XXX"],
-                "Tampa": ["Pinellas", "Florida", "XXX"]}
+user_ids = {"U02AUH5TLHF": "Boston", "U028412LLKT": "Boston", "U012HHZRUJD": "Boston", "U97PAM3N0": "Boston", }
+location_dict = {"Boston": ["Middlesex", "Massachusetts", "C4ZM85PE3"],
+                 "Durham": ["Durham", "North%20Carolina", "C5XDHQT6V"],
+                "Tampa": ["Pinellas", "Florida", "C8XV8KK40"]}
 
 
 def get_risk_level(location):
