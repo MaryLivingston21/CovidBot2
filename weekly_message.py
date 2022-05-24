@@ -25,6 +25,7 @@ class WeeklyMessage:
                 *self._get_info_block(),
                 self.DIVIDER_BLOCK,
                 *self._get_button_block(),
+                self.DIVIDER_BLOCK,
             ],
         }
 
@@ -44,7 +45,7 @@ class WeeklyMessage:
         text = (
             "Subscribe to daily updates"
         )
-        return self._get_action_block(text)
+        return self._get_action_block(text, self.city)
 
     @staticmethod
     def _get_section_block(text):
@@ -53,7 +54,7 @@ class WeeklyMessage:
         ]
 
     @staticmethod
-    def _get_action_block(text):
+    def _get_action_block(text, city):
         return [
             {"type": "actions",
              "elements": [
@@ -63,7 +64,8 @@ class WeeklyMessage:
                       "text": text
                   },
                   "style": "primary",
-                  "value": "click_me_123"
+                  "value": city,
+                  "action_id": "subscribe"
                   }
              ]
              },

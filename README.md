@@ -23,3 +23,14 @@
 
 #### Database
 - [cdc database](https://data.cdc.gov/resource/3nnm-4jni.json)
+
+
+##### Misc data
+location_dict = {"Boston": ["Middlesex", "Massachusetts", "C4ZM85PE3"],
+                 "Durham": ["Durham", "North%20Carolina", "C5XDHQT6V"],
+                 "Tampa": ["Pinellas", "Florida", "C8XV8KK40"]}
+
+user_ids = {"Boston": [], "Durham": [], "Tampa": []}
+
+user_ids = {"Boston": ["U02AUH5TLHF", "U028412LLKT", "U012HHZRUJD", "U97PAM3N0"],
+            "Durham": [], "Tampa": []}
