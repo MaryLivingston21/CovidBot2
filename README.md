@@ -9,6 +9,21 @@
     - source env/bin/activate
 - pip3 install slack_sdk
 
+#### Setup Data before first run
+- add this to main.py before load_object() methods are called
+```
+location_dict = {"Boston": ["Middlesex", "Massachusetts", "C4ZM85PE3"],
+                 "Durham": ["Durham", "North%20Carolina", "C5XDHQT6V"],
+                 "Tampa": ["Pinellas", "Florida", "C8XV8KK40"]}
+
+user_ids = {"Boston": [], "Durham": [], "Tampa": []}
+
+save_object(location_dict, "locationData.pickle")
+save_object(user_ids, "userData.pickle")
+```
+- add SLACK_APP_TOKEN, SLACK_BOT_TOKEN, and SLACK_SIGNING_SECRET
+
+
 #### Automate python file - Mac
 - pip3 install pyinstaller
 - cd CovidBot2
@@ -23,14 +38,3 @@
 
 #### Database
 - [cdc database](https://data.cdc.gov/resource/3nnm-4jni.json)
-
-
-##### Misc data
-location_dict = {"Boston": ["Middlesex", "Massachusetts", "C4ZM85PE3"],
-                 "Durham": ["Durham", "North%20Carolina", "C5XDHQT6V"],
-                 "Tampa": ["Pinellas", "Florida", "C8XV8KK40"]}
-
-user_ids = {"Boston": [], "Durham": [], "Tampa": []}
-
-user_ids = {"Boston": ["U02AUH5TLHF", "U028412LLKT", "U012HHZRUJD", "U97PAM3N0"],
-            "Durham": [], "Tampa": []}
