@@ -24,8 +24,7 @@ class WeeklyMessage:
                 *self._get_greeting_block(),
                 *self._get_info_block(),
                 self.DIVIDER_BLOCK,
-                *self._get_button_block(),
-                self.DIVIDER_BLOCK,
+
             ],
         }
 
@@ -41,34 +40,10 @@ class WeeklyMessage:
         )
         return self._get_section_block(text)
 
-    def _get_button_block(self):
-        text = (
-            "Subscribe to daily updates"
-        )
-        return self._get_action_block(text, self.city)
-
     @staticmethod
     def _get_section_block(text):
         return [
             {"type": "section", "text": {"type": "mrkdwn", "text": text}},
-        ]
-
-    @staticmethod
-    def _get_action_block(text, city):
-        return [
-            {"type": "actions",
-             "elements": [
-                 {"type": "button",
-                  "text": {
-                      "type": "plain_text",
-                      "text": text
-                  },
-                  "style": "primary",
-                  "value": city,
-                  "action_id": "subscribe"
-                  }
-             ]
-             },
         ]
 
     def get_weekly_message(self):
@@ -77,7 +52,7 @@ class WeeklyMessage:
         if self.risk_level == "High":
             return message + "Working in-person is optional next week.\n"
 
-        return message + "Working in-person is required Tues, Wed, and Thurs, next week.\n"
+        return message + "Working in-person is required Tues, Wed, and Thurs next week.\n"
 
     def get_risk_level(self):
         with urllib.request.urlopen(

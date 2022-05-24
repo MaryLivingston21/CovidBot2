@@ -29,8 +29,6 @@ class DailyMessage:
                 *self._get_greeting_block(),
                 *self._get_info_block(),
                 self.DIVIDER_BLOCK,
-                *self._get_button_block(),
-                self.DIVIDER_BLOCK,
             ],
         }
 
@@ -46,34 +44,10 @@ class DailyMessage:
         )
         return self._get_section_block(text)
 
-    def _get_button_block(self):
-        text = (
-            "Unsubscribe from daily updates"
-        )
-        return self._get_action_block(text, self.city)
-
     @staticmethod
     def _get_section_block(text):
         return [
             {"type": "section", "text": {"type": "mrkdwn", "text": text}},
-        ]
-
-    @staticmethod
-    def _get_action_block(text, city):
-        return [
-            {"type": "actions",
-             "elements": [
-                 {"type": "button",
-                  "text": {
-                      "type": "plain_text",
-                      "text": text
-                  },
-                  "style": "danger",
-                  "value": city,
-                  "action_id": "unsubscribe"
-                  }
-             ]
-             },
         ]
 
     def get_daily_message(self):
