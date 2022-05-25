@@ -8,7 +8,6 @@ from slack_sdk.errors import SlackApiError
 from daily_message import DailyMessage
 from weekly_message import WeeklyMessage
 
-
 os.environ['SLACK_BOT_TOKEN'] = ''
 os.environ['SLACK_SIGNING_SECRET'] = ''
 
@@ -26,10 +25,34 @@ def save_object(obj, filename):
 
 def load_object(filename):
     try:
-        with open(filename, "rb") as f:
+        with open("/Users/mary/PycharmProjects/CovidBot2/" + filename, "rb") as f:
             return pickle.load(f)
     except Exception as ex:
         logger.error("Error during unpickling object (Possibly unsupported):", ex)
+
+
+def add_user(user_id, city):
+    user_ids = load_object("userData.pickle")
+
+    if city in user_ids:
+        users = user_ids.get(city)
+        if user_id not in users:
+            users.append(user_id)
+            user_ids[city] = users
+
+            save_object(user_ids, "userData.pickle")
+
+
+def remove_user(user_id, city):
+    user_ids = load_object("userData.pickle")
+
+    if city in user_ids:
+        users = user_ids.get(city)
+        if user_id in users:
+            users.remove(user_id)
+            user_ids[city] = users
+            save_object(user_ids, "userData.pickle")
+
 
 
 if __name__ == '__main__':
