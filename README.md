@@ -1,16 +1,16 @@
 ### Covid Bot
-- Messages me the current covid risk level every weekday at 7am
-- Used crontab and task scheduler to automate my scripts
+- Messages users the current covid risk level.  
+- Messages #misc-boston the current covid risk level on Fridays
+- Used crontab and task scheduler to automate my script
+  - runs M-F at 7am
 
 #### Setup
 - pip3 install python3
-- cd CovidBot2
-    - python3 -m venv env/
-    - source env/bin/activate
 - pip3 install slack_sdk
 
-#### Setup Data before first run
-- add this to main.py before load_object() methods are called
+#### Setup before first run
+- add SLACK_BOT_TOKEN, and SLACK_SIGNING_SECRET
+- add data to main.py before load_object() methods are called
 ```
 location_dict = {"Boston": ["Middlesex", "Massachusetts", "C4ZM85PE3"],
                  "Durham": ["Durham", "North%20Carolina", "C5XDHQT6V"],
@@ -21,8 +21,6 @@ user_ids = {"Boston": [], "Durham": [], "Tampa": []}
 save_object(location_dict, "locationData.pickle")
 save_object(user_ids, "userData.pickle")
 ```
-- add SLACK_APP_TOKEN, SLACK_BOT_TOKEN, and SLACK_SIGNING_SECRET
-
 
 #### Automate python file - Mac
 - pip3 install pyinstaller
