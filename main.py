@@ -76,7 +76,7 @@ if __name__ == '__main__':
             except SlackApiError as e:
                 logger.error("Error posting weekly message: {}".format(e))
 
-    if datetime.now().strftime("%a") != "Fri" or datetime.now().strftime("%a") != "Mon":
+    if datetime.now().strftime("%a") != "Fri" and datetime.now().strftime("%a") != "Mon":
         for city in user_ids.items():
             for user in city[1]:
                 try:
