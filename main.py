@@ -76,14 +76,15 @@ if __name__ == '__main__':
             except SlackApiError as e:
                 logger.error("Error posting weekly message: {}".format(e))
 
-    for city in user_ids.items():
-        for user in city[1]:
-            try:
-                location = (city[0], location_dict[city[0]])
-                message_builder = DailyMessage(user, location)
-                daily_message = message_builder.get_message_payload()
-                result = client.chat_postMessage(**daily_message)
+    if datetime.now().strftime("%a") != "Fri" or datetime.now().strftime("%a") != "Mon":
+        for city in user_ids.items():
+            for user in city[1]:
+                try:
+                    location = (city[0], location_dict[city[0]])
+                    message_builder = DailyMessage(user, location)
+                    daily_message = message_builder.get_message_payload()
+                    result = client.chat_postMessage(**daily_message)
 
-                logger.info(result)
-            except SlackApiError as e:
-                logger.error("Error posting daily message: {}".format(e))
+                    logger.info(result)
+                except SlackApiError as e:
+                    logger.error("Error posting daily message: {}".format(e))

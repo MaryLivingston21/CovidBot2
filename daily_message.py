@@ -54,7 +54,7 @@ class DailyMessage:
         message = "The covid risk level in " + self.city + " is " + self.risk_level + \
                   ". :mask: \n"
 
-        if self.day_of_week == ("Monday" or "Friday") or self.risk_level == "High":
+        if self.risk_level == "High":
             return message + "Working in-person is optional today.\n"
 
         return message + "Working in-person is required today.\n"
