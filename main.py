@@ -14,6 +14,9 @@ os.environ['SLACK_SIGNING_SECRET'] = ''
 client = WebClient(token=os.environ.get('SLACK_BOT_TOKEN'))
 logger = logging.getLogger(__name__)
 
+userFile = "userData.pickle"
+locationFile = "locationData.pickle"
+
 
 def save_object(obj, filename):
     try:
@@ -32,7 +35,7 @@ def load_object(filename):
 
 
 def add_user(user_id, city):
-    user_ids = load_object("userData.pickle")
+    user_ids = load_object(userFile)
 
     if city in user_ids:
         users = user_ids.get(city)
@@ -40,19 +43,18 @@ def add_user(user_id, city):
             users.append(user_id)
             user_ids[city] = users
 
-            save_object(user_ids, "userData.pickle")
+            save_object(user_ids, userFile)
 
 
 def remove_user(user_id, city):
-    user_ids = load_object("userData.pickle")
+    user_ids = load_object(userFile)
 
     if city in user_ids:
         users = user_ids.get(city)
         if user_id in users:
             users.remove(user_id)
             user_ids[city] = users
-            save_object(user_ids, "userData.pickle")
-
+            save_object(user_ids, userFile)
 
 
 if __name__ == '__main__':
@@ -60,8 +62,8 @@ if __name__ == '__main__':
     logger.setLevel(logging.DEBUG)
     logger.addHandler(logging.StreamHandler())
 
-    location_dict = load_object("locationData.pickle")
-    user_ids = load_object("userData.pickle")
+    location_dict = load_object(locationFile)
+    user_ids = load_object(userFile)
 
     print(user_ids)
 
