@@ -52,7 +52,7 @@ class WeeklyMessage:
         if self.risk_level == "High":
             return message + "Working in-person is optional next week.\n"
 
-        return message + "Working in-person is required Tues, Wed, and Thurs next week.\n"
+        return message
 
     def get_risk_level(self):
         with urllib.request.urlopen(
